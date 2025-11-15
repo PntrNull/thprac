@@ -522,6 +522,12 @@ namespace TH11 {
         }
     });
 
+    // Hook for SuddenDeath
+    // thanks to RUEEE, I didn't have to find the address by myself
+    EHOOK_ST(th11_suddendeath, 0x4327F0, 6, {
+        RestartGame();
+    });
+
     class THAdvOptWnd : public Gui::PPGuiWnd {
 
     private:
@@ -569,6 +575,16 @@ namespace TH11 {
             th11_all_clear_bonus_3.Toggle(mOptCtx.all_clear_bonus);
         }
 
+        // SuddenDeath functions
+        void SuddenDeathInit()
+        {
+            th11_suddendeath.Setup();
+        }
+        void SuddenDeathSet()
+        {
+            th11_suddendeath.Toggle(mOptCtx.sudden_death);
+        }
+
         THAdvOptWnd() noexcept
         {
             SetWndFlag(ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
@@ -584,6 +600,7 @@ namespace TH11 {
             OnLocaleChange();
             FpsInit();
             GameplayInit();
+            SuddenDeathInit();
         }
         SINGLETON(THAdvOptWnd);
 
@@ -644,6 +661,8 @@ namespace TH11 {
             if (BeginOptGroup<TH_GAMEPLAY>()) {
                 if (GameplayOpt(mOptCtx))
                     GameplaySet();
+                if (SuddenDeathOpt(mOptCtx))
+                    SuddenDeathSet();
                 EndOptGroup();
             }
 
