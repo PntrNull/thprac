@@ -10,6 +10,8 @@
 #include <metrohash128.h>
 #include <dinput.h>
 
+#include <thread>
+
 #include "utils/wininternal.h"
 
 namespace THPrac {
@@ -168,7 +170,8 @@ void iat_hook_joyGetPosEx()
     }
 }
 
-void SetDpadHook(uintptr_t addr, size_t instr_len) {
+void SetDpadHook(uintptr_t addr, size_t instr_len)
+{
     static constinit HookCtx dpad_hook = {
         .callback = IDirectInputDevice8_GetDeviceState_VEHHook,
         .data = PatchData()
@@ -654,6 +657,18 @@ bool GameplayOpt(adv_opt_ctx& ctx)
     return hasChanged;
 }
 
+// used for the suddendeath option
+// I <del>copied</del> rewrote the GameplayOpt() function (
+bool SuddenDeathOpt(adv_opt_ctx& ctx)
+{
+    bool enabledSuddenDeath = false;
+
+    // I really don't know what it means (
+    enabledSuddenDeath |= ImGui::Checkbox(S(TH_FACTOR_SD), &ctx.sudden_death);
+
+    return enabledSuddenDeath;
+}
+
 void AboutOpt(const char* thanks_text)
 {
     static bool showLicense = false;
@@ -681,6 +696,45 @@ void AboutOpt(const char* thanks_text)
         EndOptGroup();
     }
 }
+
+/** Restart the game when being called
+ * @param hWnd handle of the game window
+ */
+void RestartGame()
+{
+    // Start a new thread to avoid blocking the main thread
+    std::thread thd(RestartGamePress);
+    thd.detach();
+}
+
+void RestartGamePress()
+{
+    // Be used in RestartGame()
+    // Simulate ESC+R
+    INPUT inputs[4] = {};
+    inputs[0].type = INPUT_KEYBOARD;
+    inputs[0].ki.wVk = VK_ESCAPE;
+    inputs[0].ki.wScan = 0x1;
+    inputs[1].type = INPUT_KEYBOARD;
+    inputs[1].ki.wVk = VK_ESCAPE;
+    inputs[1].ki.wScan = 0x1;
+    inputs[1].ki.dwFlags = KEYEVENTF_KEYUP;
+    inputs[2].type = INPUT_KEYBOARD;
+    inputs[2].ki.wVk = 'R';
+    inputs[2].ki.wScan = 0x13;
+    inputs[3].type = INPUT_KEYBOARD;
+    inputs[3].ki.wVk = 'R';
+    inputs[3].ki.dwFlags = KEYEVENTF_KEYUP;
+    inputs[3].ki.wScan = 0x13;
+    SendInput(1, &inputs[0], sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    SendInput(1, &inputs[1], sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    SendInput(1, &inputs[2], sizeof(INPUT));
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    SendInput(1, &inputs[3], sizeof(INPUT));
+}
+
 
 #pragma endregion
 

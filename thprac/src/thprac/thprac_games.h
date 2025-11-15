@@ -88,6 +88,7 @@ struct adv_opt_ctx {
     std::wstring data_rec_dir;
 
     bool all_clear_bonus = false;
+    bool sudden_death = false;
 };
 
 void MsgBox(UINT type, const char* title, const char* msg, const char* msg2 = nullptr, HWND owner = nullptr);
@@ -115,7 +116,10 @@ typedef void __stdcall FPSHelperCallback(int32_t);
 int FPSHelper(adv_opt_ctx& ctx, bool repStatus, bool vpFast, bool vpSlow, FPSHelperCallback* callback);
 bool GameFPSOpt(adv_opt_ctx& ctx, bool replay = true);
 bool GameplayOpt(adv_opt_ctx& ctx);
+bool SuddenDeathOpt(adv_opt_ctx& ctx);
 void AboutOpt(const char* thanks_text = nullptr);
+void RestartGame();
+void RestartGamePress();
 
 #pragma endregion
 

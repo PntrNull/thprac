@@ -7,7 +7,7 @@
 
 namespace THPrac {
 
-const char* th_glossary_str[3][1116]
+const char* th_glossary_str[3][1117]
 {
     {
         "",
@@ -1013,6 +1013,7 @@ const char* th_glossary_str[3][1116]
         "Extra",
         "总是计入All Clear Bonus",
         "开启时，单关练习六面结束后将会计入All Clear Bonus。",
+        "SuddenDeath_Test",
         "信仰",
         "終幕",
         "FPS调整",
@@ -2131,6 +2132,7 @@ const char* th_glossary_str[3][1116]
         "Extra",
         "Always factor in the \"All Clear Bonus\"",
         "If enabled, when practicing stage 6, the \"All Clear Bonus\" will be added to the total score at the end.",
+        "SuddenDeath_Test",
         "Faith",
         "Finale",
         "FPS Adjustment",
@@ -3249,6 +3251,7 @@ const char* th_glossary_str[3][1116]
         "エクストラ",
         "いつもオールクリアボーナスを加算します",
         "有効になっている場合、練習モードのステージ6の終わりに、最終スコアにオールクリアボーナスを加算されます。",
+        "SuddenDeath_Test",
         "信仰",
         "终幕",
         "FPS調整",
@@ -21916,7 +21919,7 @@ const th_glossary_t TH20_EXPIRED_PYRAMID_FIX_OPT[6]
 
 }
 
-const wchar_t __thprac_loc_range_zh[2803] {
+const wchar_t __thprac_loc_range_zh[2799] {
     0x0020, 0x00FF,
     0x2014, 0x2014,
     0x201c, 0x201d,
@@ -22670,7 +22673,6 @@ const wchar_t __thprac_loc_range_zh[2803] {
     0x6ee1, 0x6ee1,
     0x6ee5, 0x6ee5,
     0x6f02, 0x6f02,
-    0x6f0f, 0x6f0f,
     0x6f14, 0x6f14,
     0x6f29, 0x6f2b,
     0x6f5c, 0x6f5c,
@@ -23082,7 +23084,6 @@ const wchar_t __thprac_loc_range_zh[2803] {
     0x8b6c, 0x8b6c,
     0x8ba1, 0x8ba2,
     0x8ba4, 0x8ba4,
-    0x8ba9, 0x8ba9,
     0x8bad, 0x8bae,
     0x8bb0, 0x8bb0,
     0x8bb3, 0x8bb3,
