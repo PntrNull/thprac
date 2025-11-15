@@ -1,8 +1,0 @@
-// 提示文件帮助 Visual Studio IDE 解释 Visual C++ 标识符,
-// 如函数和宏的名称。
-// 有关详细信息，请参见 https://go.microsoft.com/fwlink/?linkid=865984
-#define PATCH_HK(addr_, code_) HookCtx { .data = PatchData() }
-#define PATCH_HK(addr_, code_) { .addr = addr_, .data = PatchCode(code_) }
-#define HOTKEY_ENDDEF() >()}
-#define HOTKEY_DEFINE(name, txt, keytxt, vkey) ::THPrac::Gui::GuiHotKey name { txt, keytxt, vkey, make_hook_array<
-#define EHOOK_ST(name_, addr_, instr_size_, __VA_ARGS__) constinit HookCtx name_ { .addr = addr_, .name = #name_, .callback = []([[maybe_unused]] PCONTEXT pCtx, [[maybe_unused]] HookCtx* self) __VA_ARGS__, .data = PatchHookImpl(instr_size_) }
