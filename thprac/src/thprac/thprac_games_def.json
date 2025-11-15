@@ -958,7 +958,7 @@
         "If enabled, when practicing stage 6, the \"All Clear Bonus\" will be added to the total score at the end.",
         "有効になっている場合、練習モードのステージ6の終わりに、最終スコアにオールクリアボーナスを加算されます。"
       ],
-      "TH_FACTOR_SD": [ "SuddenDeath_Test", "SuddenDeath_Test", "SuddenDeath_Test" ],
+      "TH_FACTOR_SD": [ "启用Sudden Death", "Enable Sudden Death", "サドンデスを有効にする" ],
       "TH_DATANLY": [ "数据收集 (WIP)", "Data Gathering (WIP)", "データ収集 (WIP)" ],
       "TH_DATANLY_BUTTON": [ "数据收集...", "Data Gathering...", "データ収集..." ],
       "TH_BACK": [ "返回", "Back", "戻る" ],

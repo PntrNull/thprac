@@ -519,7 +519,7 @@ namespace TH15 {
 
     // Hook for SuddenDeath
     // thanks to RUEEE, I didn't have to find the address by myself
-    EHOOK_ST(th15_suddendeath, 0x456398, 6, {
+    EHOOK_ST(th15_suddendeath, 0x456398, 5, {
         RestartGame();
     });
 
